@@ -6,12 +6,13 @@
 <html lang="en">
 <body>
 <spring:url value="/user" var="addUserUrl" />
+<spring:url value="/user/update" var="updateUserUrl" />
 
-<form:form method="POST" action="${addUserUrl}" modelAttribute="user">
+<form:form method="POST" action="${update ? updateUserUrl : addUserUrl}" modelAttribute="user">
     <table>
         <tr>
             <td><form:label path="username">Username</form:label></td>
-            <td><form:input path="username"/></td>
+            <td><form:input path="username" readonly="${update}"/></td>
         </tr>
         <tr>
             <td><form:label path="firstName">First name</form:label></td>
@@ -22,7 +23,7 @@
             <td><form:input path="lastName"/></td>
         </tr>
         <tr>
-            <td><input type="submit" value="Add"/></td>
+            <td><input type="submit" value="${update ? "Update" : "Add"}"/></td>
         </tr>
     </table>
 </form:form>
